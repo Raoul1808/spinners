@@ -19,7 +19,6 @@ pub struct UnityObjectValuesContainer {
 pub struct LargeStringValue {
     pub key: String,
     pub val: String,
-    pub loaded_generation_id: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -92,11 +91,8 @@ pub struct TrackInfo {
     pub track_label: String,
     pub charter: String,
     pub description: String,
-    pub title_text_color: Color,
-    pub subtitle_text_color: Color,
-    pub title_offset_y: i32,
+    pub title_offset_y: f32,
     pub spotify_link: String,
-    pub apple_music_link: String,
     pub difficulties: Vec<Difficulty>,
     pub platform_filter: i32,
     pub track_type: i32,
