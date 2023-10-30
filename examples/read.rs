@@ -1,7 +1,5 @@
-use spinners::add;
-
 fn main() {
-    let a = 700;
-    let b = 27;
-    println!("{} + {} = {}", a, b, add(a, b))
+    let srtb = include_str!("../thirdsun.srtb");
+    let srtb = spinners::load_srtb_from_str(srtb).unwrap();
+    println!("{:#?}", srtb);
 }
