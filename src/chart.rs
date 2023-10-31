@@ -84,6 +84,8 @@ pub struct TrackInfo {
     pub album_art_reference: AlbumArtReference,
     pub background_id: BackgroundId,
     pub background_coloring: BackgroundColoring,
+    pub fallback_background_id: Option<BackgroundId>,
+    pub fallback_background_coloring: Option<BackgroundColoring>,
     pub artist_name: String,
     pub feat_artists: String,
     pub title: String,
