@@ -44,13 +44,13 @@ pub struct AlbumArtReference {
     pub m_guid: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BackgroundId {
     pub background_id: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BackgroundColoring {
     pub id: String,
@@ -84,8 +84,10 @@ pub struct TrackInfo {
     pub album_art_reference: AlbumArtReference,
     pub background_id: BackgroundId,
     pub background_coloring: BackgroundColoring,
-    pub fallback_background_id: Option<BackgroundId>,
-    pub fallback_background_coloring: Option<BackgroundColoring>,
+    #[serde(default)]
+    pub fallback_background_id: BackgroundId,
+    #[serde(default)]
+    pub fallback_background_coloring: BackgroundColoring,
     pub artist_name: String,
     pub feat_artists: String,
     pub title: String,
@@ -94,6 +96,8 @@ pub struct TrackInfo {
     pub charter: String,
     pub description: String,
     pub title_offset_y: f32,
+    #[serde(default)]
+    pub apple_music_link: String,
     pub spotify_link: String,
     pub difficulties: Vec<Difficulty>,
     pub platform_filter: i32,
