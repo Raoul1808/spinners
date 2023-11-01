@@ -95,7 +95,7 @@ pub struct TrackInfo {
     pub track_label: String,
     pub charter: String,
     pub description: String,
-    pub title_offset_y: f32,
+    pub title_offset_y: f64,
     #[serde(default)]
     pub apple_music_link: String,
     pub spotify_link: String,
@@ -133,17 +133,17 @@ pub struct ClipData {
     pub start_bar: i32,
     pub end_bar: i32,
     pub transition_in: i32,
-    pub transition_in_value: f32,
-    pub transition_in_offset: f32,
+    pub transition_in_value: f64,
+    pub transition_in_offset: f64,
     pub transition_out: i32,
-    pub transition_out_value: f32,
-    pub transition_out_offset: f32,
+    pub transition_out_value: f64,
+    pub transition_out_offset: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Note {
-    pub time: f32,
+    pub time: f64,
     pub r#type: u8,
     pub color_index: u8,
     pub column: i32,
@@ -158,7 +158,7 @@ pub struct TrackData {
     pub compatibility_version: i32,
     pub difficulty_rating: u8,
     pub preview_loop_bars: PreviewLoopBars,
-    pub go_beat_offset_from_first_note: f32,
+    pub go_beat_offset_from_first_note: f64,
     pub difficulty_type: i32,
     pub is_tutorial: bool,
     pub tutorial_title_translation: TranslationKey,
@@ -178,6 +178,40 @@ pub struct TrackData {
     pub last_edited_on_date: String,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TimeSignatureMarker {
+    pub starting_beat: i32,
+    pub ticks_per_bar: i32,
+    pub tick_divisor: i32,
+    pub beat_length_type: i32,
+    pub beat_length_dotted: i32,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BpmMarker {
+    pub beat_length: f64,
+    pub clip_time: f64,
+    pub r#type: i32,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CuePoint {
+    pub name: String,
+    pub time: f64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ClipInfo {
+    pub time_signature_markers: Vec<TimeSignatureMarker>,
+    pub bpm_markers: Vec<BpmMarker>,
+    pub cue_points: Vec<CuePoint>,
+    pub clip_asset_reference: AssetBundleReference,
+}
+
 #[derive(Debug)]
 pub struct SrtbFile {
     pub raw_content: RawSrtbFile,
@@ -187,4 +221,5 @@ pub struct SrtbFile {
     pub hard_diff: TrackData,
     pub expert_diff: TrackData,
     pub xd_diff: TrackData,
+    pub clip_info: ClipInfo,
 }

@@ -12,6 +12,7 @@ pub fn load_srtb_from_str(str: &str) -> Result<chart::SrtbFile, Error> {
         let d = serde_json::from_str(str)?;
         diff.push(d);
     }
+    let clip_info = serde_json::from_str(raw_file.large_string_values_container.values[6].val.as_str())?;
     Ok(chart::SrtbFile {
         raw_content: raw_file,
         track_info,
@@ -20,6 +21,7 @@ pub fn load_srtb_from_str(str: &str) -> Result<chart::SrtbFile, Error> {
         hard_diff: diff.pop().unwrap(),
         normal_diff: diff.pop().unwrap(),
         easy_diff: diff.pop().unwrap(),
+        clip_info,
     })
 }
 
