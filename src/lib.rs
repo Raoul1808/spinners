@@ -3,6 +3,24 @@ use serde_json::Error;
 
 mod chart;
 
+/// Loads an SRTB file from the given string slice.
+/// 
+/// # Errors
+/// 
+/// This functions errors on invalid json or missing SRTB fields.
+/// 
+/// # Examples
+/// 
+/// ```
+/// let file_contents = include_str!("../thirdsun.srtb");
+/// let srtb_file = spinners::load_srtb_from_str(file_contents).unwrap_or_else(|err| {
+///     eprintln!("Parsing error on file thirdsun.srtb: {err}");
+///     std::process::exit(1);
+/// });
+/// 
+/// // You can then use normally the SRTB data
+/// println!("{}", srtb_file.track_info.title);
+/// ```
 pub fn load_srtb_from_str(str: &str) -> Result<chart::SrtbFile, Error> {
     let raw_file: RawSrtbFile = serde_json::from_str(str)?;
     let track_info = serde_json::from_str(raw_file.large_string_values_container.values[0].val.as_str())?;
