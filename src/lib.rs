@@ -1,3 +1,20 @@
+//! An SRTB file parsing crate.
+//! 
+//! Provides a function to parse SRTB data from a given string.
+//! 
+//! # Usage
+//! ```
+//! # fn main() -> Result<(), serde_json::Error> {
+//! // Load the file by whatever means
+//! let file_contents = include_str!("../thirdsun.srtb");
+//! let srtb = spinners::load_srtb_from_str(file_contents)?;
+//! 
+//! // You can then use the loaded data as you like
+//! println!("{}", srtb.track_info.charter);
+//! # Ok(())
+//! # }
+//! ```
+
 use chart::{RawSrtbFile, TrackData};
 use serde_json::Error;
 
