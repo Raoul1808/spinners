@@ -7,6 +7,8 @@ authors = ["Raoul1808"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/Raoul1808/spinners"
+keywords = ["srtb", "srxd"]
+categories = ["parsing"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
