@@ -7,7 +7,7 @@
 //! # fn main() -> Result<(), serde_json::Error> {
 //! // Load the file by whatever means
 //! let file_contents = include_str!("../thirdsun.srtb");
-//! let srtb = spinners::load_srtb_from_str(file_contents)?;
+//! let srtb = srtb_rs::load_srtb_from_str(file_contents)?;
 //! 
 //! // You can then use the loaded data as you like
 //! println!("{}", srtb.track_info.charter);
@@ -31,7 +31,7 @@ mod chart;
 /// ```
 /// # fn main() -> Result<(), serde_json::Error> {
 /// let file_contents = include_str!("../thirdsun.srtb");
-/// let srtb_file = spinners::load_srtb_from_str(file_contents)?;
+/// let srtb_file = srtb_rs::load_srtb_from_str(file_contents)?;
 /// 
 /// assert_eq!(srtb_file.track_info.title, "Third Sun");
 /// # Ok(())
