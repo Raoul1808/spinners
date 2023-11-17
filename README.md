@@ -1,4 +1,4 @@
-# Spinners
+# srtb_rs
 An SRTB file parsing crate written in Rust.
 
 This crate is work in progress, as there are many tiny changes in this format between game updates that need to be accounted for.
@@ -6,9 +6,7 @@ This crate is work in progress, as there are many tiny changes in this format be
 ## Usage
 
 ```rust
-use spinners::load_srtb_from_str;
-
-let file_contents: &str;  // Load the file by whatever means
+let file_contents = include_str!("your_srtb_file.srtb");  // Load the file by whatever means
 let srtb = load_srtb_from_str(file_contents)?;
 
 // You can then read data from the srtb file
