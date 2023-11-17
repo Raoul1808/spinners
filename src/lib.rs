@@ -43,17 +43,23 @@ pub fn load_srtb_from_str(str: &str) -> Result<chart::SrtbFile, Error> {
     })
 }
 
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
-
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::load_srtb_from_str;
 
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn load_srtb() {
+        let file_contents = include_str!("../thirdsun.srtb");
+        let srtb = load_srtb_from_str(file_contents);
+        // Testing proper loading
+        assert!(srtb.is_ok());
+        let srtb = srtb.unwrap();
+        // Testing a few correct values
+        assert_eq!(srtb.track_info.charter, "Raoul1808");  // I charted this
+        assert_eq!(srtb.xd_diff.notes.len(), 881);  // There are 881 notes in this chart's XD difficulty
+        assert_eq!(srtb.clip_info.cue_points.len(), 15);  // There are 15 cue points in this chart
+        
+        // I could test everything, but there are too many fields to check, so we'll count this as being enough.
+        // If it doesn't sound professional, it's because I'm very much new to unit-testing and publishing libraries/crates.
     }
 }
