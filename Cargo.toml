@@ -2,6 +2,7 @@
 name = "spinners"
 version = "0.1.0"
 edition = "2021"
+description = "A crate for parsing SRTB files"
 authors = ["Raoul1808"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
