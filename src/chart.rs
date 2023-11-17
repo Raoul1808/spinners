@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct UnityObjectValue {
+pub(crate) struct UnityObjectValue {
     pub key: String,
     pub json_key: String,
     pub full_type: String,
@@ -10,26 +10,26 @@ pub struct UnityObjectValue {
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct UnityObjectValuesContainer {
+pub(crate) struct UnityObjectValuesContainer {
     pub values: Vec<UnityObjectValue>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct LargeStringValue {
+pub(crate) struct LargeStringValue {
     pub key: String,
     pub val: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct LargeStringValuesContainer {
+pub(crate) struct LargeStringValuesContainer {
     pub values: Vec<LargeStringValue>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct RawSrtbFile {
+pub(crate) struct RawSrtbFile {
     pub unity_object_values_container: UnityObjectValuesContainer,
     pub large_string_values_container: LargeStringValuesContainer,
     pub clip_info_count: i32,
@@ -214,7 +214,6 @@ pub struct ClipInfo {
 
 #[derive(Debug)]
 pub struct SrtbFile {
-    pub raw_content: RawSrtbFile,
     pub track_info: TrackInfo,
     pub easy_diff: TrackData,
     pub normal_diff: TrackData,

@@ -18,8 +18,7 @@ mod chart;
 ///     std::process::exit(1);
 /// });
 /// 
-/// // You can then use normally the SRTB data
-/// println!("{}", srtb_file.track_info.title);
+/// assert_eq!(srtb_file.track_info.title, "Third Sun");
 /// ```
 pub fn load_srtb_from_str(str: &str) -> Result<chart::SrtbFile, Error> {
     let raw_file: RawSrtbFile = serde_json::from_str(str)?;
@@ -32,7 +31,6 @@ pub fn load_srtb_from_str(str: &str) -> Result<chart::SrtbFile, Error> {
     }
     let clip_info = serde_json::from_str(raw_file.large_string_values_container.values[6].val.as_str())?;
     Ok(chart::SrtbFile {
-        raw_content: raw_file,
         track_info,
         xd_diff: diff.pop().unwrap(),
         expert_diff: diff.pop().unwrap(),
@@ -58,7 +56,7 @@ mod tests {
         assert_eq!(srtb.track_info.charter, "Raoul1808");  // I charted this
         assert_eq!(srtb.xd_diff.notes.len(), 881);  // There are 881 notes in this chart's XD difficulty
         assert_eq!(srtb.clip_info.cue_points.len(), 15);  // There are 15 cue points in this chart
-        
+
         // I could test everything, but there are too many fields to check, so we'll count this as being enough.
         // If it doesn't sound professional, it's because I'm very much new to unit-testing and publishing libraries/crates.
     }
