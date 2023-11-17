@@ -12,13 +12,13 @@ mod chart;
 /// # Examples
 /// 
 /// ```
+/// # fn main() -> Result<(), serde_json::Error> {
 /// let file_contents = include_str!("../thirdsun.srtb");
-/// let srtb_file = spinners::load_srtb_from_str(file_contents).unwrap_or_else(|err| {
-///     eprintln!("Parsing error on file thirdsun.srtb: {err}");
-///     std::process::exit(1);
-/// });
+/// let srtb_file = spinners::load_srtb_from_str(file_contents)?;
 /// 
 /// assert_eq!(srtb_file.track_info.title, "Third Sun");
+/// # Ok(())
+/// # }
 /// ```
 pub fn load_srtb_from_str(str: &str) -> Result<chart::SrtbFile, Error> {
     let raw_file: RawSrtbFile = serde_json::from_str(str)?;

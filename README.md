@@ -5,13 +5,11 @@ This crate is work in progress, as there are many tiny changes in this format be
 
 ## Usage
 
-> Expect some API changes in future releases before version 1.0
-
 ```rust
 use spinners::load_srtb_from_str;
 
 let file_contents: &str;  // Load the file by whatever means
-let srtb = load_srtb_from_str(file_contents);
+let srtb = load_srtb_from_str(file_contents)?;
 
 // You can then read data from the srtb file
 println!("{}", srtb.track_info.charter);
